@@ -20,3 +20,6 @@ def pregunta_10():
 
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        secuancia = [(linea.strip().split("\t")[0], len(linea.strip().split("\t")[3].split(",")), len(linea.strip().split("\t")[4].split(","))) for linea in file] 
+    return secuancia

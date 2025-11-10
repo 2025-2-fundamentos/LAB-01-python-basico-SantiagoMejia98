@@ -4,7 +4,7 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
-
+from itertools import groupby
 
 def pregunta_07():
     """
@@ -25,3 +25,11 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        secuencia = [(int(linea.strip().split("\t")[1]), linea.strip().split("\t")[0]) for linea in file]
+    secuencia = sorted(secuencia, key=lambda x: x[0])
+    resultados = []
+    for key, group in groupby(secuencia, lambda x: x[0]):
+        letras = [value for _, value in group]
+        resultados.append((key, letras))
+    return resultados
